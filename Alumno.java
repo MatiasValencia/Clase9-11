@@ -22,15 +22,6 @@ public class Alumno extends Persona {
         }
         return -1;
     }
-    public int chequeoNotas() {
-        int contadorNotas = 0;
-        for (int i = 0; i < 10; i++) {
-            if (notas[i] != 0.0) {
-                contadorNotas++;
-            }
-        }
-        return contadorNotas;
-    }
     public void agregarNota(int nota) {
         int indice = comprobarIndice(0.0);
         if (indice == -1) {
@@ -54,13 +45,14 @@ public class Alumno extends Persona {
         notas[indice] = 0.0;
     }
     public void calcularPromedio() {
-        int totalNotas = chequeoNotas();
-        double sumaNotas = 0.0;
-        for (int i = 0; i < 10; i++) {
+        double sumatoria = 0.0;
+        int contador = 0;
+        for (int i = 0; i < 10;i++) {
             if (notas[i] != 0.0) {
-                sumaNotas = sumaNotas + notas[i];
+                sumatoria = sumatoria + notas[i];
+                contador++;
             }
         }
-        double promedio = sumaNotas / totalNotas;
+        System.out.println("El promedio es: " + (sumatoria / contador));
     }
 }
