@@ -13,27 +13,54 @@ public class Alumno extends Persona {
     //Setter
     public void setNotas(double[] notas) {this.notas = notas;}
     public void setCurso(String curso) {this.curso = curso;}
-    // Metodo
-    public int comprobarIndice() {
+    // Metodos
+    public int comprobarIndice(double nota) {
         for (int i = 0; i < 10;i++) {
-            if (notas[i] == 0.0) {
+            if (notas[i] == nota) {
                 return i;
             }
         }
         return -1;
     }
+    public int chequeoNotas() {
+        int contadorNotas = 0;
+        for (int i = 0; i < 10; i++) {
+            if (notas[i] != 0.0) {
+                contadorNotas++;
+            }
+        }
+        return contadorNotas;
+    }
     public void agregarNota(int nota) {
-        int indice = comprobarIndice();
+        int indice = comprobarIndice(0.0);
         if (indice == -1) {
             System.out.println("No se puede agregar la nota");
         }
         notas[indice] = (double) nota;
     }
     public void agregarNota(double nota) {
-        int indice = comprobarIndice();
+        int indice = comprobarIndice(0.0);
         if (indice == -1) {
             System.out.println("No se puede agregar la nota");
         }
         notas[indice] = nota;
+    }
+    public void eliminarNota(double nota) {
+        int indice = comprobarIndice(nota);
+        if (indice == -1) {
+            System.out.println("La nota no existe");
+            return;
+        }
+        notas[indice] = 0.0;
+    }
+    public void calcularPromedio() {
+        int totalNotas = chequeoNotas();
+        double sumaNotas = 0.0;
+        for (int i = 0; i < 10; i++) {
+            if (notas[i] != 0.0) {
+                sumaNotas = sumaNotas + notas[i];
+            }
+        }
+        double promedio = sumaNotas / totalNotas;
     }
 }
