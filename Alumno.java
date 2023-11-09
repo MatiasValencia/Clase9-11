@@ -14,25 +14,26 @@ public class Alumno extends Persona {
     public void setNotas(double[] notas) {this.notas = notas;}
     public void setCurso(String curso) {this.curso = curso;}
     // Metodo
-    public void agregarNota(double nota) {
-        for (int i = 0;i < notas.length;i++) {
-            if (notas[i] < 10) {
-                notas[i] = nota;
-            }
-            if (notas[i] == 10) {
-                System.out.println("No se puede agregar notas.");
+    public int comprobarIndice() {
+        for (int i = 0; i < 10;i++) {
+            if (notas[i] == 0.0) {
+                return i;
             }
         }
+        return -1;
     }
     public void agregarNota(int nota) {
-        for (int i = 0; i < notas.length;i++) {
-            if (notas[i] < 10) {
-                double notaDouble = nota;
-                notas[i] = notaDouble;
-            }
-            if (notas[i] == 10) {
-                System.out.println("No se puede agregar notas.");
-            }
+        int indice = comprobarIndice();
+        if (indice == -1) {
+            System.out.println("No se puede agregar la nota");
         }
+        notas[indice] = (double) nota;
+    }
+    public void agregarNota(double nota) {
+        int indice = comprobarIndice();
+        if (indice == -1) {
+            System.out.println("No se puede agregar la nota");
+        }
+        notas[indice] = nota;
     }
 }
