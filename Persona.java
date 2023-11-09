@@ -4,6 +4,11 @@ public class Persona {
     private String rut;
     // Constructor
     public Persona() {}
+    public Persona(String nombre, int edad, String rut) {
+        this.nombre = nombre;
+        this.edad = edad;
+        this.rut = rut;
+    }
     // Getters
     public String getNombre() {return nombre;}
     public int getEdad() {return edad;}
